@@ -3,6 +3,20 @@ import Grid from "@react-css/grid";
 import { gridBlocks } from "../models/gridBlocks";
 import UserContext from "../context/userContext";
 import { BeatLoader } from "react-spinners";
+import styled from "styled-components";
+
+const GridContainerStyles = styled.div`
+  display: grid;
+  grid-template-columns: repeat(100, 1fr);
+  grid-template-rows: repeat(100, 1fr);
+  gap: 2px;
+`;
+
+const GridBlockStyles = styled(Grid)`
+  border-style: solid;
+  border-radius: 5px;
+  width: 35px;
+`;
 
 const CreateBoard = (props) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -45,28 +59,16 @@ const CreateBoard = (props) => {
           <BeatLoader color="#36d7b7" />
         </div>
       ) : (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(100, 1fr)",
-            gridTemplateRows: "repeat(100, 1fr)",
-            gap: "2px",
-          }}
-        >
+        <GridContainerStyles>
           {props.boardLayout.map((tile) => (
-            <Grid
-              style={{
-                borderStyle: "solid",
-                borderRadius: "5px",
-                backgroundColor: tile.tileDetails.color,
-                width: "35px",
-              }}
+            <GridBlockStyles
+              style={{ backgroundColor: tile.tileDetails.color }}
               key={tile.tileNumber}
             >
               {tile.tileNumber === userValue.tileNumber ? "YOU" : ""}
-            </Grid>
+            </GridBlockStyles>
           ))}
-        </div>
+        </GridContainerStyles>
       )}
     </div>
   );
