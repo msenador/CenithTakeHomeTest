@@ -30,6 +30,7 @@ function App() {
     switch (e.key) {
       case "ArrowRight":
         moveRight();
+        // closeModal();
         break;
       case "ArrowLeft":
         moveLeft();
@@ -49,7 +50,7 @@ function App() {
   const moveRight = () => {
     checkLostGame(userValue);
     let tileToTheRight = boardLayout[userValue.tileNumber + 1];
-    if (tileToTheRight.tileNumber.toString().includes("00")) {
+    if (tileToTheRight.tileNumber.toString().includes("99")) {
       alert("CONGRATS! YOU SURVIVED. Refresh to try again");
       return;
     }
